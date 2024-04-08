@@ -10,7 +10,7 @@ jobs:
     name: Update Model
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Fetch API
         run: curl https://developers.strava.com/swagger/swagger.json > src/stravalib/tests/resources/strava_swagger.json
       - name: Fetch API Schema
@@ -18,10 +18,10 @@ jobs:
         with:
           model_file: "src/stravalib/strava_model.py"
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v6
         with:
           add-paths: |
-            stravalib
+            src/stravalib
           commit-message: Strava API Change
           branch: api-change
           delete-branch: true
